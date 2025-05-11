@@ -6,13 +6,18 @@ np.random.seed(
     1405
 )  # Semilla para que los resultados sean reproducibles (modificar la generación de números aleatorios)
 
-# Creación de Objetos
-s = pd.Series([1, 3, 5, np.nan, 6, 8])
-print(s)
+# Asumamos que tienes un archivo llamado 'datos_produccion.csv' con columnas como 'Fecha', 'Producto', 'Cantidad', 'Defectos'
+datos_produccion = pd.read_csv('./pandas/datos_produccion.csv')
+print(datos_produccion.head())
 
-s = pd.Series([10, 20, 15], index=["Enero", "Febrero", "Marzo"])
-print(s)
+df_agrupado = datos_produccion.groupby(['Producto']).agg(
+    Total_Producido=('Cantidad', 'sum'),
+    Total_Defectos=('Defectos', 'mean')  # Cambiado 'average' por 'mean'
+)
+print(df_agrupado)
 
-fechas = pd.date_range("20230101", periods=6)  # Genera un rango de fechas
-df = pd.DataFrame(np.random.randn(6, 4), index=fechas, columns=["A", "B", "C", "D"])
-print(df)
+# Guardar el DataFrame 'df_agrupado' que creamos antes en un archivo CSV llamado 'resumen_produccion.csv'
+df_agrupado.to_csv('resumen_produccion.csv')
+
+# Puedes controlar si se guarda el índice o no
+df_agrupado.to_csv('resumen_produccion_sin_indice.csv', index=False)
