@@ -342,9 +342,7 @@ print(ts)
 Aquí, `ts` es una Serie donde el índice son fechas. Podemos usar estas fechas para seleccionar datos de manera intuitiva.
 
 * **Selección por fecha:**
-¡Tienes toda la razón! Mil disculpas, se cortó la generación del Markdown. Aquí tienes la continuación y el final del tutorial completo en formato Markdown:
 
-```markdown
     ```python
     print(ts['2024-01-05']) # Selecciona el valor para el 5 de enero de 2024
     print(ts['2024-01'])   # Selecciona todos los valores de enero de 2024
